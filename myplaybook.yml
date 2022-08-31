@@ -1,0 +1,12 @@
+---
+
+- name: create workdir
+  hosts: localhost
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+    - { role: roles }
+
+  vars_files:
+    - group_vars/users.yml

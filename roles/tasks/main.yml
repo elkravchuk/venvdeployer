@@ -1,0 +1,18 @@
+---
+# tasks file for roles
+- name: update cache
+  apt:
+    update_cache: yes
+
+- name: create workdir
+  file:
+    path: "{{ project_path }}"
+    recurse: yes
+    state: directory
+
+- name: create python venvs
+  file:
+    path: "{{ project_path }}/{{ item | basename }}"
+    #recurse: yes
+    state: directory
+  with_fileglob: "*"

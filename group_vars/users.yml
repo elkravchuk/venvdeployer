@@ -1,0 +1,5 @@
+users:
+  -
+    user: root
+    groups: sudo
+    visudo_line: "ansible.pub ALL=(ALL) NOPASSWD: ALL"

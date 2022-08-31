@@ -1,0 +1,3 @@
+[dev_python_venvs]
+
+localhost ansible_connection=local

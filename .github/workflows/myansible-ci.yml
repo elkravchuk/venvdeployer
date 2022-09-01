@@ -1,0 +1,24 @@
+name: My-Custom-Ansible-CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+         playbook: myplaybook.yml
+         directory: ./
+
+
+

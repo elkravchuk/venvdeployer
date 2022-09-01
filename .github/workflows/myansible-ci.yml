@@ -14,8 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run myplaybook on Shared-Runner
-    #    uses: root/action-ansible-playbook@v3
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: myplaybook.yml
-          directory: ./
+         playbook: myplaybook.yml
+         directory: ./
+
+
+

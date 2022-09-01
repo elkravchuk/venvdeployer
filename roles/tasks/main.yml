@@ -10,9 +10,25 @@
     recurse: yes
     state: directory
 
-- name: create python venvs
-  file:
-    path: "{{ project_path }}/{{ item | basename }}"
-    #recurse: yes
-    state: directory
-  with_fileglob: "*"
+- name: install required packages
+  apt:
+    pkg:
+      - apt-transport-https
+      - python3-venv
+      - python3-pip
+      - python3-setuptools
+      - python3-pkg-resources
+      - htop
+      - curl
+      - software-properties-common
+
+- name: install python venvs
+  command: >-
+      python3 -m venv {{ project_path }}/{{ item | basename | splitext | first }}
+  with_fileglob: "*.txt"
+
+- name: install requirements
+  pip:
+    requirements: "{{ item }}"
+    virtualenv: "{{ project_path }}/{{ item | basename | splitext | first }}"
+  with_fileglob: "*.txt"
